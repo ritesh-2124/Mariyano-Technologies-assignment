@@ -1,0 +1,98 @@
+# Fantasy Cricket App
+This is a simple backend application for a fantasy cricket app, similar to Dream11. It provides APIs to accept team entries, process match results, and view team results based on the match data.
+
+Tech Stack
+Node.js with Express for backend
+MongoDB for database storage
+
+------------------------------
+Installation
+Clone the repository:
+
+## used proper commenting for batter understnding
+
+bash
+git clone "https://github.com/ritesh-2124/Mariyano-Technologies-assignment.git"
+
+
+Install dependencies:
+------------------------------
+bash
+npm install
+------------------------------
+Set up environment variables:
+
+Create a .env file in the root directory of the project and provide the following variables:
+PORT=3000
+MONGO_URL=<your-mongodb-uri>
+
+-----------------------------
+Data
+Players
+Player data is stored in MongoDB.
+Use the provided CSV or JSON files under the data folder to populate player data.
+Match Results
+Match result data is stored in MongoDB.
+Use the provided CSV or JSON files under the data folder to populate match result data.
+Endpoints
+---------------------------------------
+# Add Team Entry /api/teams/add-team
+
+curl --location 'http://localhost:3000/api/teams/add-team' \
+--header 'Content-Type: application/json' \
+--data '{
+  "name": "MyFantasyTeam1",
+  "players": [
+    "RD Gaikwad",
+    "JC Buttler",
+    "MM Ali",
+    "N Jagadeesan",
+    "AT Rayudu",
+    "Ravindra Jadeja",
+    "Simarjeet Singh",
+    "YS Chahal",
+    "Dwayne Bravo",
+    "Deepak Chahar",
+    "TA Boult"
+  ],
+  "captain": "RD Gaikwad",
+  "viceCaptain": "Ravindra Jadeja"
+}'
+
+POST request to submit a new team entry.
+Required parameters:
+Your Team Name
+Players (list of player names)
+Captain (player name)
+Vice-captain (player name)
+---------------------------------------
+# Process Match Result /api/results/process-result
+curl --location --request POST
+'http://localhost:3000/api/results/process-result'
+POST request to process match results.
+This endpoint calculates points for the players and assigns them to the team entries with those players.
+Match results are fetched from the provided match data.
+---------------------------------------
+# View Teams Results /api/teams/team-result
+curl --location 'http://localhost:3000/api/teams/team-result'
+GET request to view the list of team entries with their scored points and the team's total points.
+The top team with the maximum points is shown as the winner.
+If multiple teams have the top score, all winning teams are shown.
+Usage
+
+---------------------------------------
+Ensure MongoDB is running locally or provide the connection URI in the .env file.
+
+Populate player and match result data in MongoDB using the provided CSV or JSON files.
+
+
+---------------------------------------
+Start the server:
+
+bash
+npm start
+Use the defined endpoints to add team entries, process match results, and view team results.
+---------------------------------------
+
+# Contributors
+# Ritesh Kumar Yadav
